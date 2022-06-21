@@ -1,13 +1,14 @@
 #pragma once
+#include <vector>
 #include "student.hpp"
 
 class Database
 {
 public:
-    bool add(const Student &s);
+    void add(const Student &s);
     void display() const;
     std::string show() const;
 
 private:
-    bool _isAdded = false;
+    std::vector<Student> _students;
 };
