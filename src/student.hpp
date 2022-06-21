@@ -1,6 +1,16 @@
 #pragma once
 #include <string>
 
+enum class Credentials
+{
+    name,
+    lastName,
+    address,
+    indexNumber,
+    pesel,
+    gender
+};
+
 enum class Gender
 {
     Male,
@@ -18,6 +28,7 @@ public:
             Gender gender);
 
     std::string show() const;
+    std::string getter(Credentials w) const;
 
 private:
     std::string _name;
