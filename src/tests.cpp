@@ -31,7 +31,7 @@ TEST_F(DatabaseTest, DisplayNonEmptyDb)
     EXPECT_EQ(content, expected);
 }
 
-TEST_F(DatabaseTest, DisplayAfterSearchSurname)
+TEST_F(DatabaseTest, DisplayAfterSearchLastName)
 {
     Student adam{
         "Adam",
@@ -43,6 +43,22 @@ TEST_F(DatabaseTest, DisplayAfterSearchSurname)
     db.add(adam);
 
     auto content = db.searchLastName("Kowalski");
+    auto expected = "Adam Kowalski; ul. Dobra 134, 00-200 Warszawa; 123456; 11223344567; Male";
+    EXPECT_EQ(content, expected);
+}
+
+TEST_F(DatabaseTest, DisplayAfterSearchPesel)
+{
+    Student adam{
+        "Adam",
+        "Kowalski",
+        "ul. Dobra 134, 00-200 Warszawa",
+        123456,
+        "11223344567",
+        Gender::Male};
+    db.add(adam);
+
+    auto content = db.searchPesel("11223344567");
     auto expected = "Adam Kowalski; ul. Dobra 134, 00-200 Warszawa; 123456; 11223344567; Male";
     EXPECT_EQ(content, expected);
 }
