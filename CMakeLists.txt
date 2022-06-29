@@ -4,7 +4,7 @@ project(student-database)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(SOURCES src/database.cpp src/student.cpp)
-set(FLAGS -Wall -std:c++20)
+set(FLAGS -W2 -std:c++20)
 
 add_executable(${PROJECT_NAME} ${SOURCES} src/main.cpp)
 target_compile_options(${PROJECT_NAME} PRIVATE ${FLAGS})

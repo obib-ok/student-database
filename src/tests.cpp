@@ -62,3 +62,39 @@ TEST_F(DatabaseTest, DisplayAfterSearchPesel)
     auto expected = "Adam Kowalski; ul. Dobra 134, 00-200 Warszawa; 123456; 11223344567; Male";
     EXPECT_EQ(content, expected);
 }
+
+TEST_F(DatabaseTest, SortDatabaseByPesel)
+{
+    Student adam{
+        "Adam",
+        "Kowalski",
+        "ul. Dobra 134, 00-200 Warszawa",
+        123456,
+        "11223344567",
+        Gender::Male};
+    db.add(adam);
+
+    Student kaja{
+        "Kaja",
+        "Sypko",
+        "ul. Niedobra 22, 10-999 Milicz",
+        654321,
+        "99004433228",
+        Gender::Female};
+    db.add(kaja);
+
+    Student damian{
+        "Damian",
+        "Matysniak",
+        "ul. Twoja 1, 68-321 Stara",
+        745130,
+        "76889900116",
+        Gender::Male};
+    db.add(damian);
+
+    db.sortByPesel();
+
+    auto content = db.show();
+    auto expected = "Kaja Sypko; ul. Niedobra 22, 10-999 Milicz; 654321; 99004433228; MaleDamian Matysniak; ul. Twoja 1, 68-321 Stara; 745130; 76889900116; MaleAdam Kowalski; ul. Dobra 134, 00-200 Warszawa; 123456; 11223344567; Male";
+    EXPECT_EQ(content, expected);
+}

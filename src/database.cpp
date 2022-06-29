@@ -41,3 +41,9 @@ std::string Database::searchPesel(std::string s) const
             return "";
     }
 }
+
+void Database::sortByPesel()
+{
+    sort(_students.begin(), _students.end(), [](const Student &a, const Student &b)
+         { return a.getter(Credentials::pesel) > b.getter(Credentials::pesel); });
+}
